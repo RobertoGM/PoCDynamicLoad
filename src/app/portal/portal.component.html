@@ -1,0 +1,14 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened>
+    <mat-list>
+      <h3 mat-subheader>services</h3>
+      <mat-list-item matRipple [routerLink]="link.route" *ngFor="let link of links">
+        <mat-icon mat-list-icon>{{link.icon}}</mat-icon>
+        <h4 mat-line>{{link.name}}</h4>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
