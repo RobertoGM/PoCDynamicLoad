@@ -24,11 +24,9 @@ export interface ContentRoute {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ContentManagerService {
-
   private _routes: ContentRoute[] = [];
 
   private _componentList: ContentRoute[] = [
@@ -41,26 +39,23 @@ export class ContentManagerService {
         DocumentationBarComponent,
         OverviewChartComponent,
         UsageChartComponent,
-      ]
-    }, {
+      ],
+    },
+    {
       component: ServersComponent,
       name: 'Servers',
       route: 'servers',
       icon: 'dashboard',
-      childComponents: [
-        AddServerComponent,
-        ServerListComponent,
-      ]
-    }, {
+      childComponents: [AddServerComponent, ServerListComponent],
+    },
+    {
       component: ServicesComponent,
       name: 'Services',
       route: 'services',
       icon: 'dashboard',
-      childComponents: [
-        AskAssistanceComponent,
-        ConnectionsActiveComponent,
-      ]
-    }, {
+      childComponents: [AskAssistanceComponent, ConnectionsActiveComponent],
+    },
+    {
       component: SettingsComponent,
       name: 'Settings',
       route: 'settings',
@@ -69,27 +64,37 @@ export class ContentManagerService {
         UserInfoComponent,
         PortalConfigComponent,
         AdminSectionComponent,
-      ]
-    }
+      ],
+    },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   get routes(): ContentRoute[] {
     return this._routes;
   }
 
   searchActiveContentRoute(path: string): ContentRoute {
-    return this._routes.find( (contentRoute: ContentRoute) => contentRoute.route === path);
+    return this._routes.find(
+      (contentRoute: ContentRoute) => contentRoute.route === path,
+    );
   }
 
   addRoute(newComponent: Type<any>) {
-    const newRoute = this._componentList.find((component: ContentRoute) => component.component === newComponent);
+    const newRoute = this._componentList.find(
+      (component: ContentRoute) => component.component === newComponent,
+    );
     if (newRoute) {
-      this._routes.push({ name: newRoute.name, route: newRoute.route, icon: newRoute.icon});
-      this.router.config[2].children.push(
-        { component: newRoute.component, path: newRoute.route, data: { childComponents: newRoute.childComponents }}
-      );
+      this._routes.push({
+        name: newRoute.name,
+        route: newRoute.route,
+        icon: newRoute.icon,
+      });
+      this.router.config[2].children.push({
+        component: newRoute.component,
+        path: newRoute.route,
+        data: { childComponents: newRoute.childComponents },
+      });
     }
   }
 }

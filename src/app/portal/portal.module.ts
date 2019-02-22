@@ -25,6 +25,10 @@ import { UserInfoComponent } from './settings/user-info/user-info.component';
 import { PortalConfigComponent } from './settings/portal-config/portal-config.component';
 import { AdminSectionComponent } from './settings/admin-section/admin-section.component';
 import { AdDirective } from './shared/ad.directive';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ChartjsModule } from '@ctrl/ngx-chartjs';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,7 @@ import { AdDirective } from './shared/ad.directive';
     UserInfoComponent,
     PortalConfigComponent,
     AdminSectionComponent,
-    AdDirective
+    AdDirective,
   ],
   entryComponents: [
     DashboardComponent,
@@ -59,7 +63,7 @@ import { AdDirective } from './shared/ad.directive';
     AskAssistanceComponent,
     UserInfoComponent,
     PortalConfigComponent,
-    AdminSectionComponent
+    AdminSectionComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +74,10 @@ import { AdDirective } from './shared/ad.directive';
     MatListModule,
     MatButtonModule,
     MatRippleModule,
-  ]
+    MatCardModule,
+    MatToolbarModule,
+    MatTabsModule,
+    ChartjsModule,
+  ],
 })
-export class PortalModule { }
+export class PortalModule {}
