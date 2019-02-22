@@ -18,10 +18,10 @@ export class PortalComponent implements OnInit {
 
   ngOnInit() {
     this.links = this.contentManager.routes;
-    this.contentManager.addRoute(DashboardComponent, 'Dashboard', 'dashboard', 'dashboard');
-    this.contentManager.addRoute(ServersComponent, 'Servers', 'servers', 'dns');
-    this.contentManager.addRoute(ServicesComponent, 'Services', 'services', 'widgets');
-    this.contentManager.addRoute(SettingsComponent, 'settings', 'settings', 'settings');
+    this.contentManager.addRoute(DashboardComponent);
+    this.contentManager.addRoute(ServersComponent);
+    this.contentManager.addRoute(ServicesComponent);
+    this.contentManager.addRoute(SettingsComponent);
   }
 
 }

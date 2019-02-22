@@ -1,25 +1,24 @@
-import { Component, Type, ViewChildren, ComponentFactoryResolver, QueryList, AfterViewInit } from '@angular/core';
-import { DocumentationBarComponent } from './documentation-bar/documentation-bar.component';
-import { OverviewChartComponent } from './overview-chart/overview-chart.component';
-import { UsageChartComponent } from './usage-chart/usage-chart.component';
+import { Component, Type, ViewChildren, ComponentFactoryResolver, QueryList, AfterViewInit, OnInit } from '@angular/core';
 import { AdDirective } from '../shared/ad.directive';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 
-  components: Type<any>[] = [
-    DocumentationBarComponent,
-    OverviewChartComponent,
-    UsageChartComponent
-  ];
+  components: Type<any>[];
 
   @ViewChildren(AdDirective) adHosts: QueryList<AdDirective>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+              private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.components = this.activatedRoute.snapshot.data.childComponents;
+  }
 
   ngAfterViewInit() {
     this.loadComponents();
