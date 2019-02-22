@@ -1,10 +1,18 @@
 <mat-toolbar class="header">
   <mat-tab-group>
     <mat-tab label="Financial">
-      <ngx-chartjs [data]="financial" type="line"></ngx-chartjs>
+      <ngx-chartjs
+        [data]="financial"
+        type="line"
+        [options]="chartDefaultOptions"
+      ></ngx-chartjs>
     </mat-tab>
     <mat-tab label="Overview">
-      <ngx-chartjs [data]="overview" type="bar"></ngx-chartjs
+      <ngx-chartjs
+        [data]="overview"
+        type="bar"
+        [options]="chartDefaultOptions"
+      ></ngx-chartjs
     ></mat-tab>
     <mat-tab label="Services">
       <ngx-chartjs [data]="services" type="pie"></ngx-chartjs>

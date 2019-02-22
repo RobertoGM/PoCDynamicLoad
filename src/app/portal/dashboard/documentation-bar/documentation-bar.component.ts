@@ -9,9 +9,23 @@ export class DocumentationBarComponent implements OnInit {
   private financial: any;
   private overview: any;
   private services: any;
+  private chartDefaultOptions: any;
   constructor() {}
 
   ngOnInit() {
+    this.chartDefaultOptions = {
+      legend: { display: true },
+      scales: {
+        yAxes: [{ ticks: { beginAtZero: true } }],
+        xAxes: [
+          {
+            ticks: {
+              autoSkip: false,
+            },
+          },
+        ],
+      },
+    };
     this.financial = {
       labels: [
         'January',
