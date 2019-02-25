@@ -1,3 +1,12 @@
-<p>
-  usage-chart works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Usage Chart</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ngx-chartjs
+      [data]="usage"
+      type="line"
+      [options]="chartDefaultOptions"
+    ></ngx-chartjs>
+  </mat-card-content>
+</mat-card>
