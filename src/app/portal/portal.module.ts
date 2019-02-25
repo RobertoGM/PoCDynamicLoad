@@ -29,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { ServerDetailsComponent } from './servers/server-details/server-details.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     PortalConfigComponent,
     AdminSectionComponent,
     AdDirective,
+    ServerDetailsComponent,
   ],
   entryComponents: [
     DashboardComponent,
@@ -64,6 +66,7 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     UserInfoComponent,
     PortalConfigComponent,
     AdminSectionComponent,
+    ServerDetailsComponent,
   ],
   imports: [
     CommonModule,
