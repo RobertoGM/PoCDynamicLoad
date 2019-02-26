@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { AdDirective } from '../shared/ad.directive';
 import { ActivatedRoute } from '@angular/router';
+import { RouteManagerService } from '../shared/route-manager.service';
 
 @Component({
   selector: 'app-services',
@@ -25,12 +26,15 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
+    private routerManager: RouteManagerService,
     private changeDetector: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.components = this.activatedRoute.snapshot.data.childComponents;
+    this.components = this.routerManager.retrieveRouterDataComponents(
+      this.activatedRoute.snapshot.data,
+    );
   }
 
   ngAfterViewInit() {

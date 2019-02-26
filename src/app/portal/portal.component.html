@@ -6,6 +6,10 @@
         <mat-icon mat-list-icon>{{link.icon}}</mat-icon>
         <h4 mat-line>{{link.name}}</h4>
       </mat-list-item>
+      <mat-list-item (click)="logout()">
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <h4 mat-line>Log out</h4>
+      </mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>

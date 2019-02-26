@@ -15,20 +15,22 @@ import { UserInfoComponent } from '../settings/user-info/user-info.component';
 import { PortalConfigComponent } from '../settings/portal-config/portal-config.component';
 import { AdminSectionComponent } from '../settings/admin-section/admin-section.component';
 import { RouteManagerService } from './route-manager.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { cloneDeep } from 'lodash';
 
 export interface ContentRoute {
   component?: Type<any>;
   name: string;
   route: string;
   icon?: string;
-  childComponents?: Type<any>[];
+  availableUserGroup?: number;
+  childComponents?: Partial<ContentRoute>[];
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContentManagerService {
-
   private _componentList: ContentRoute[] = [
     {
       component: DashboardComponent,
@@ -36,9 +38,9 @@ export class ContentManagerService {
       route: 'dashboard',
       icon: 'dashboard',
       childComponents: [
-        DocumentationBarComponent,
-        OverviewChartComponent,
-        UsageChartComponent,
+        { component: OverviewChartComponent, availableUserGroup: 1 },
+        { component: DocumentationBarComponent, availableUserGroup: 2 },
+        { component: UsageChartComponent, availableUserGroup: 3 },
       ],
     },
     {
@@ -46,14 +48,20 @@ export class ContentManagerService {
       name: 'Servers',
       route: 'servers',
       icon: 'dns',
-      childComponents: [AddServerComponent, ServerListComponent],
+      childComponents: [
+        { component: AddServerComponent, availableUserGroup: 2 },
+        { component: ServerListComponent, availableUserGroup: 1 },
+      ],
     },
     {
       component: ServicesComponent,
       name: 'Services',
       route: 'services',
       icon: 'swap_horizontal_circle',
-      childComponents: [AskAssistanceComponent, ConnectionsActiveComponent],
+      childComponents: [
+        { component: AskAssistanceComponent, availableUserGroup: 2 },
+        { component: ConnectionsActiveComponent, availableUserGroup: 1 },
+      ],
     },
     {
       component: SettingsComponent,
@@ -61,26 +69,43 @@ export class ContentManagerService {
       route: 'settings',
       icon: 'settings',
       childComponents: [
-        UserInfoComponent,
-        PortalConfigComponent,
-        AdminSectionComponent,
+        { component: UserInfoComponent, availableUserGroup: 3 },
+        { component: PortalConfigComponent, availableUserGroup: 3 },
+        { component: AdminSectionComponent, availableUserGroup: 2 },
       ],
     },
   ];
 
-  constructor(private routeManager: RouteManagerService) {}
+  constructor(
+    private routeManager: RouteManagerService,
+    private auth: AuthService,
+  ) {}
 
   initNavigation() {
-    const componentsAvailable = this.filterComponents(this._componentList);
-    componentsAvailable.forEach((newRoute: ContentRoute) => {
-      this.routeManager.addNavigationRoute(newRoute);
-      this.routeManager.addRoute(newRoute, this.routeManager.rootNavigation);
-    });
+    this.filterComponents(this._componentList).forEach(
+      (newRoute: ContentRoute) => {
+        this.routeManager.addNavigationRoute(newRoute);
+        this.routeManager.addRoute(newRoute, this.routeManager.rootNavigation);
+      },
+    );
   }
 
   filterComponents(components: ContentRoute[]): ContentRoute[] {
-    // filter components and child components
-    return components;
-  }
+    // Create filtered list without altering the original
+    const filteredComponents = cloneDeep(components);
 
+    // Filter child components by a given userGroup
+    filteredComponents.forEach((component: ContentRoute) => {
+      component.childComponents = component.childComponents.filter(
+        (childComponent: Partial<ContentRoute>) =>
+          childComponent.availableUserGroup <= this.auth.userGroup,
+      );
+    });
+
+    // Return the list with the top component removed if no children components
+    return filteredComponents.filter(
+      (component: Partial<ContentRoute>) =>
+        component.childComponents.length > 0,
+    );
+  }
 }

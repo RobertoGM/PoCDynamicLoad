@@ -1,4 +1,4 @@
-<mat-toolbar class="header">
+<mat-toolbar class="header" fxFlex>
   <mat-tab-group>
     <mat-tab label="Financial">
       <ngx-chartjs
@@ -12,8 +12,8 @@
         [data]="overview"
         type="bar"
         [options]="chartDefaultOptions"
-      ></ngx-chartjs
-    ></mat-tab>
+      ></ngx-chartjs>
+    </mat-tab>
     <mat-tab label="Services">
       <ngx-chartjs [data]="services" type="pie"></ngx-chartjs>
     </mat-tab>

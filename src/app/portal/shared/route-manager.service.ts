@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { ContentRoute } from './content-manager.service';
-import { Router, Route } from '@angular/router';
+import { Router, Route, Data } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RouteManagerService {
-
   private _routes: ContentRoute[] = [];
-  private _portalPosition: number = this.router.config.findIndex((route: Route) => route.path === 'portal');
+  private _portalPosition: number = this.router.config.findIndex(
+    (route: Route) => route.path === 'portal',
+  );
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   get routes(): ContentRoute[] {
     return this._routes;
@@ -23,6 +24,12 @@ export class RouteManagerService {
   clean(): void {
     this._routes = [];
     this.router.config[this._portalPosition].children = [];
+  }
+
+  retrieveRouterDataComponents(data: Data): Type<any>[] {
+    return data.childComponents.map(
+      (childComponent: ContentRoute) => childComponent.component,
+    );
   }
 
   searchActiveContentRoute(path: string): ContentRoute {
@@ -40,7 +47,6 @@ export class RouteManagerService {
   }
 
   addRoute(newRoute: Partial<ContentRoute>, routerArray: Route): void {
-
     routerArray.children = routerArray.children ? routerArray.children : [];
 
     routerArray.children.push({
@@ -51,6 +57,8 @@ export class RouteManagerService {
   }
 
   findRouterArray(path: string): Route {
-    return this.router.config[this._portalPosition].children.find((route: Route) => route.path === path);
+    return this.router.config[this._portalPosition].children.find(
+      (route: Route) => route.path === path,
+    );
   }
 }

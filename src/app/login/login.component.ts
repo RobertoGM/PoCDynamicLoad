@@ -9,11 +9,14 @@ import { AuthService } from '../shared/services/auth/auth.service';
 })
 export class LoginComponent {
 
+  userLevel: number;
+
   constructor(private router: Router,
               private auth: AuthService) { }
 
   login() {
     this.auth.isLoggedIn = true;
+    this.auth.userGroup = this.userLevel;
     this.router.navigate(['/portal']);
   }
 

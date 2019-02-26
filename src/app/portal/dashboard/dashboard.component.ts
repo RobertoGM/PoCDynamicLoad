@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import { AdDirective } from '../shared/ad.directive';
 import { ActivatedRoute } from '@angular/router';
+import { ContentRoute } from '../shared/content-manager.service';
+import { RouteManagerService } from '../shared/route-manager.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,12 +27,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
+    private routerManager: RouteManagerService,
     private changeDetector: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.components = this.activatedRoute.snapshot.data.childComponents;
+    this.components = this.routerManager.retrieveRouterDataComponents(
+      this.activatedRoute.snapshot.data,
+    );
   }
 
   ngAfterViewInit() {

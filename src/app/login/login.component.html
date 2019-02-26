@@ -1,5 +1,12 @@
-<p>
-  login works!
-</p>
+<h4>User level</h4>
+<mat-form-field>
+  <mat-select [(ngModel)]="userLevel" placeholder="user group level">
+    <mat-option *ngFor="let number of [1,2,3]" [value]="number">
+      {{number}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
-<button mat-raised-button (click)="login()">Go to app</button>
+
+
+<button mat-raised-button [disabled]="!userLevel" (click)="login()">Go to app</button>

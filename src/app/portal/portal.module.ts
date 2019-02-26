@@ -30,6 +30,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { ServerDetailsComponent } from './servers/server-details/server-details.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { ServerDetailsComponent } from './servers/server-details/server-details.
     MatToolbarModule,
     MatTabsModule,
     ChartjsModule,
+    FlexLayoutModule,
   ],
 })
 export class PortalModule {}

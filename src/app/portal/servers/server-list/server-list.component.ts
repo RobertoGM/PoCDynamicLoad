@@ -6,23 +6,22 @@ import { ServerDetailsComponent } from '../server-details/server-details.compone
 @Component({
   selector: 'app-server-list',
   templateUrl: './server-list.component.html',
-  styleUrls: ['./server-list.component.scss']
+  styleUrls: ['./server-list.component.scss'],
 })
 export class ServerListComponent implements OnInit {
-
   constructor(
     public router: Router,
-    public routeManager: RouteManagerService) { }
+    public routeManager: RouteManagerService,
+  ) {}
 
   ngOnInit() {
     this.routeManager.addRoute(
-      {component: ServerDetailsComponent, route: 'server-details/:id'},
-      this.routeManager.rootNavigation
+      { component: ServerDetailsComponent, route: 'server-details/:id' },
+      this.routeManager.rootNavigation,
     );
   }
 
   openDetails(): void {
     this.router.navigate(['portal/server-details', 1]);
   }
-
 }
