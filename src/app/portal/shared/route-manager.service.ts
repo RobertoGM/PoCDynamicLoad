@@ -26,18 +26,21 @@ export class RouteManagerService {
     this.router.config[this._portalPosition].children = [];
   }
 
+  // Transform array of ContentRoute into array of only components
   retrieveRouterDataComponents(data: Data): Type<any>[] {
     return data.childComponents.map(
       (childComponent: ContentRoute) => childComponent.component,
     );
   }
 
+  // Search within the navigation routes
   searchActiveContentRoute(path: string): ContentRoute {
     return this._routes.find(
       (contentRoute: ContentRoute) => contentRoute.route === path,
     );
   }
 
+  // Add route for the navigation sidenav
   addNavigationRoute(newRoute: Partial<ContentRoute>): void {
     this._routes.push({
       name: newRoute.name,
@@ -46,6 +49,7 @@ export class RouteManagerService {
     });
   }
 
+  // Add route to the router config
   addRoute(newRoute: Partial<ContentRoute>, routerArray: Route): void {
     routerArray.children = routerArray.children ? routerArray.children : [];
 
@@ -56,6 +60,7 @@ export class RouteManagerService {
     });
   }
 
+  // Search for a children of the root routing component
   findRouterArray(path: string): Route {
     return this.router.config[this._portalPosition].children.find(
       (route: Route) => route.path === path,

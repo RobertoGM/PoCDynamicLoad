@@ -84,6 +84,7 @@ export class ContentManagerService {
   initNavigation() {
     this.filterComponents(this._componentList).forEach(
       (newRoute: ContentRoute) => {
+        // Add routes after filtered by user group
         this.routeManager.addNavigationRoute(newRoute);
         this.routeManager.addRoute(newRoute, this.routeManager.rootNavigation);
       },
@@ -102,7 +103,7 @@ export class ContentManagerService {
       );
     });
 
-    // Return the list with the top component removed if no children components
+    // Return the list with the root component removed if no children components
     return filteredComponents.filter(
       (component: Partial<ContentRoute>) =>
         component.childComponents.length > 0,
