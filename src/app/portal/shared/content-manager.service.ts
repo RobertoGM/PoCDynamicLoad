@@ -23,6 +23,8 @@ export interface ContentRoute {
   name: string;
   route: string;
   icon?: string;
+  colspan?: number;
+  rowspan?: number;
   availableUserGroup?: number;
   childComponents?: Partial<ContentRoute>[];
 }
@@ -38,9 +40,9 @@ export class ContentManagerService {
       route: 'dashboard',
       icon: 'dashboard',
       childComponents: [
-        { component: OverviewChartComponent, availableUserGroup: 1 },
-        { component: DocumentationBarComponent, availableUserGroup: 2 },
-        { component: UsageChartComponent, availableUserGroup: 3 },
+        { component: OverviewChartComponent, colspan: 3, rowspan: 2, availableUserGroup: 1 },
+        { component: DocumentationBarComponent, colspan: 3, rowspan: 2, availableUserGroup: 2 },
+        { component: UsageChartComponent, colspan: 2, rowspan: 2, availableUserGroup: 3 },
       ],
     },
     {
@@ -49,8 +51,8 @@ export class ContentManagerService {
       route: 'servers',
       icon: 'dns',
       childComponents: [
-        { component: AddServerComponent, availableUserGroup: 2 },
-        { component: ServerListComponent, availableUserGroup: 1 },
+        { component: AddServerComponent, colspan: 4, rowspan: 2, availableUserGroup: 2 },
+        { component: ServerListComponent, colspan: 2, rowspan: 2, availableUserGroup: 1 },
       ],
     },
     {
@@ -59,8 +61,8 @@ export class ContentManagerService {
       route: 'services',
       icon: 'swap_horizontal_circle',
       childComponents: [
-        { component: AskAssistanceComponent, availableUserGroup: 2 },
-        { component: ConnectionsActiveComponent, availableUserGroup: 1 },
+        { component: AskAssistanceComponent, colspan: 1, rowspan: 2, availableUserGroup: 2 },
+        { component: ConnectionsActiveComponent, colspan: 1, rowspan: 2, availableUserGroup: 1 },
       ],
     },
     {
@@ -69,9 +71,9 @@ export class ContentManagerService {
       route: 'settings',
       icon: 'settings',
       childComponents: [
-        { component: UserInfoComponent, availableUserGroup: 3 },
-        { component: PortalConfigComponent, availableUserGroup: 3 },
-        { component: AdminSectionComponent, availableUserGroup: 2 },
+        { component: UserInfoComponent, colspan: 1, rowspan: 2, availableUserGroup: 3 },
+        { component: PortalConfigComponent, colspan: 1, rowspan: 2, availableUserGroup: 3 },
+        { component: AdminSectionComponent, colspan: 1, rowspan: 2, availableUserGroup: 2 },
       ],
     },
   ];

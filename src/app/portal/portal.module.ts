@@ -31,6 +31,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 import { ServerDetailsComponent } from './servers/server-details/server-details.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTabsModule,
     ChartjsModule,
     FlexLayoutModule,
+    DragDropModule,
+    MatGridListModule
   ],
 })
 export class PortalModule {}

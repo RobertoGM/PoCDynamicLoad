@@ -5,7 +5,6 @@ import {
   ComponentFactoryResolver,
 } from '@angular/core';
 import { AdDirective } from './ad.directive';
-import { elementStart } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root',
@@ -29,4 +28,5 @@ export class ComponentManagerService {
       viewContainerRef.createComponent(componentFactory);
     });
   }
+
 }

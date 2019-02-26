@@ -1,3 +1,13 @@
-<div fxLayoutAlign="space-evenly center" fxFlex>
-  <ng-template *ngFor="let component of components" appAdHost></ng-template>
-</div>
+<mat-grid-list cols="5" gutterSize="15px">
+  <mat-grid-tile
+    *ngFor="let component of components; let i = index"
+    [colspan]="component.colspan"
+    [rowspan]="component.rowspan"
+  >
+    <cdk-drop-list [cdkDropListConnectedTo]="drops" [cdkDropListData]="i">
+      <div cdkDrag (cdkDragEntered)="entered($event)" [cdkDragData]="i">
+        <ng-template appAdHost></ng-template>
+      </div>
+    </cdk-drop-list>
+  </mat-grid-tile>
+</mat-grid-list>
