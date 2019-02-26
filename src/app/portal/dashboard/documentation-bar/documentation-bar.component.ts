@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documentation-bar.component.scss'],
 })
 export class DocumentationBarComponent implements OnInit {
-  private financial: any;
-  private overview: any;
-  private services: any;
-  private chartDefaultOptions: any;
+  financial: any;
+  overview: any;
+  services: any;
+  chartDefaultOptions: any;
   constructor() {}
 
   ngOnInit() {

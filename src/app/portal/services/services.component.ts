@@ -5,13 +5,13 @@ import {
   Type,
   ViewChildren,
   QueryList,
-  ComponentFactoryResolver,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { AdDirective } from '../shared/ad.directive';
 import { ActivatedRoute } from '@angular/router';
 import { RouteManagerService } from '../shared/route-manager.service';
+import { ComponentManagerService } from '../shared/component-manager.service';
 
 @Component({
   selector: 'app-services',
@@ -25,7 +25,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   @ViewChildren(AdDirective) adHosts: QueryList<AdDirective>;
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private componentManager: ComponentManagerService,
     private routerManager: RouteManagerService,
     private changeDetector: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
@@ -38,20 +38,8 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.loadComponents();
+    this.componentManager.loadComponents(this.adHosts, this.components);
     this.changeDetector.detectChanges();
   }
 
-  loadComponents(): void {
-    this.adHosts.toArray().forEach((element: AdDirective, index: number) => {
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-        this.components[index],
-      );
-
-      const viewContainerRef = element.viewContainerRef;
-      viewContainerRef.clear();
-
-      viewContainerRef.createComponent(componentFactory);
-    });
-  }
 }

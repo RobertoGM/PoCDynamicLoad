@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview-chart.component.scss'],
 })
 export class OverviewChartComponent implements OnInit {
-  private overview: any;
-  private chartDefaultOptions: any;
+  overview: any;
+  chartDefaultOptions: any;
   constructor() {}
 
   ngOnInit() {

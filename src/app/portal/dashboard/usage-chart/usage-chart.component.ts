@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usage-chart.component.scss'],
 })
 export class UsageChartComponent implements OnInit {
-  private chartDefaultOptions: any;
-  private usage: any;
+  chartDefaultOptions: any;
+  usage: any;
   constructor() {}
 
   ngOnInit() {
