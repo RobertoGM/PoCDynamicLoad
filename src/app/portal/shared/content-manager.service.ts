@@ -51,8 +51,8 @@ export class ContentManagerService {
       route: 'servers',
       icon: 'dns',
       childComponents: [
-        { component: AddServerComponent, colspan: 4, rowspan: 2, availableUserGroup: 2 },
-        { component: ServerListComponent, colspan: 2, rowspan: 2, availableUserGroup: 1 },
+        { component: AddServerComponent, colspan: 1, rowspan: 1, availableUserGroup: 2 },
+        { component: ServerListComponent, colspan: 2, rowspan: 1, availableUserGroup: 1 },
       ],
     },
     {
@@ -61,8 +61,8 @@ export class ContentManagerService {
       route: 'services',
       icon: 'swap_horizontal_circle',
       childComponents: [
-        { component: AskAssistanceComponent, colspan: 1, rowspan: 2, availableUserGroup: 2 },
-        { component: ConnectionsActiveComponent, colspan: 1, rowspan: 2, availableUserGroup: 1 },
+        { component: AskAssistanceComponent, colspan: 1, rowspan: 1, availableUserGroup: 2 },
+        { component: ConnectionsActiveComponent, colspan: 1, rowspan: 1, availableUserGroup: 1 },
       ],
     },
     {
@@ -71,9 +71,9 @@ export class ContentManagerService {
       route: 'settings',
       icon: 'settings',
       childComponents: [
-        { component: UserInfoComponent, colspan: 1, rowspan: 2, availableUserGroup: 3 },
-        { component: PortalConfigComponent, colspan: 1, rowspan: 2, availableUserGroup: 3 },
-        { component: AdminSectionComponent, colspan: 1, rowspan: 2, availableUserGroup: 2 },
+        { component: UserInfoComponent, colspan: 1, rowspan: 1, availableUserGroup: 3 },
+        { component: PortalConfigComponent, colspan: 1, rowspan: 1, availableUserGroup: 3 },
+        { component: AdminSectionComponent, colspan: 1, rowspan: 1, availableUserGroup: 2 },
       ],
     },
   ];
